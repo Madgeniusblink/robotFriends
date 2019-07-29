@@ -2,7 +2,7 @@
 .sec {
     overflow-y: scroll;
     border: 5px solid black;
-    height: 800px;
+    height: 525px;
 }
 
 body {

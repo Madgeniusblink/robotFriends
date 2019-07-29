@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import CardList from '../components/CardList'
 import SearchBox from '../components/SearchBox'
 import Scroll from '../components/Scroll'
-// import { robots } from '../robots'
+import ErrorBoundry from '../components/ErrorBoundry'
 import '../containers/App.css'
 import logo from '../styles/logo.svg'
-
 
 
 class App extends Component {
@@ -29,6 +28,7 @@ class App extends Component {
 
     render () {
         const { robots, searchfield } = this.state
+        // CardList
         const filteredRobots = this.state.robots.filter((robot) => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase())
         })
@@ -45,7 +45,9 @@ class App extends Component {
                     <h1 className='f1'>RoboFriends</h1>
                     <SearchBox searchChange={this.OnSearchChange}/>
                     <Scroll>
-                        <CardList robots={filteredRobots} />
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots} />
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             )
