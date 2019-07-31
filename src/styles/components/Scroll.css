@@ -11,7 +11,7 @@ body {
 
 /* width */
 .sec::-webkit-scrollbar {
-    width: 30px;
+    width: 20px;
     background: black;
 }
 
