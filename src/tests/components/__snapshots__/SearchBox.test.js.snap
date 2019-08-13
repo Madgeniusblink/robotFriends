@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render SearchBox component  1`] = `ShallowWrapper {}`;
+
+exports[`test input SearchBox  1`] = `ShallowWrapper {}`;

@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CardList from '../components/CardList'
-import SearchBox from '../components/SearchBox'
-import Scroll from '../components/Scroll'
-import ErrorBoundry from '../components/ErrorBoundry'
-import Header from '../components/Header'
+
 import '../containers/App.css'
-import logo from '../styles/logo.svg'
 
 import { setSearchField, requestRobots } from '../actions'
+import MainPage from '../components/MainPage';
 
 const mapStateToProps = (state) => {
     return {
@@ -28,37 +24,12 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends Component {
-    componentDidMount() {
-        this.props.onRequestRobots()
+    render() {
+        return (
+            <MainPage {...this.props}/>
+        )
     }
-
-    render () {
-        const { searchField, onSearchChange, robots, isPending} = this.props
-        // CardList
-        const filteredRobots = robots.filter((robot) => {
-            return robot.name.toLowerCase().includes(searchField.toLowerCase());
-        })
-        if (isPending) {
-            return(
-                <div className='tc'>
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1>Loading...</h1>
-                </div>
-            ) 
-        } else {
-            return (
-                <div className='tc'>
-                    <Header />
-                    <SearchBox searchChange={onSearchChange}/>
-                    <Scroll>
-                        <ErrorBoundry>
-                            <CardList robots={filteredRobots} />
-                        </ErrorBoundry>
-                    </Scroll>
-                </div>
-            )
-        }
-    }
+    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
