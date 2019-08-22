@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+    console.log(process.env.REACT_APP_SAY_HI)
     return {
         onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
         onRequestRobots: () => dispatch(requestRobots())

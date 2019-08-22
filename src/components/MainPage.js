@@ -36,7 +36,7 @@ class MainPage extends Component {
                     <SearchBox searchChange={onSearchChange}/>
                     <Scroll>
                         <ErrorBoundry>
-                            <CardList robots={this.filterRobots()} />
+                            <CardList robots={this.filterRobots(robots)} />
                         </ErrorBoundry>
                     </Scroll>
                 </div>
