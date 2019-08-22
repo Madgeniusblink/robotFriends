@@ -1,22 +1,33 @@
 version: 2
 jobs:
-  one:
+  build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:latest
     steps:
       - checkout
-      - run: echo "A first hello"
-      - run: sleep 25
-  two:
+      - run: echo "npm installing"
+      - run: npm install
+      - run: CI=true npm run build
+  test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:latest
     steps:
       - checkout
-      - run: echo "A more familiar hi"
-      - run: sleep 15
+      - run: echo "Running Tests"
+      - run: npm install
+      - run: npm test
+  pretest:
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: echo "PreTestRuning...."
 workflows:
   version: 2
-  one_and_two:
+  build_and_test_and_lint:
     jobs:
-      - one
-      - two
+      - build
+      - pretest
+      - test:
+          requires:
+            - pretest
